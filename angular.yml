@@ -1,0 +1,44 @@
+pool:
+  name: Azure Pipelines
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 14.16.0'
+  inputs:
+    versionSpec: 14.16.0
+
+- task: Npm@1
+  displayName: 'npm install cli'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'install -g @angular/cli'
+
+- task: Npm@1
+  displayName: 'npm install '
+  inputs:
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm build'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/angulardemoproject'
+    includeRootFolder: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts: drop'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/'
+
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Azure App Service Deploy: demoaspj1243'
+  inputs:
+    azureSubscription: 'ASCITSOL-PROD (037c3529-df7e-4b33-9ac9-26eb3c289495)'
+    WebAppName: fagaaaada
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/*.zip'
