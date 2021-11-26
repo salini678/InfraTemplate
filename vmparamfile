@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "strgacname": {
+            "value": "strgss89" 
+        },
+        "nsgname": {
+            "value": "ssnsg101" 
+        },
+        "vnetname": {
+            "value": "vnet-1" 
+        },
+        "subnetname": {
+            "value": "subnet-A" 
+        },
+        "nicname": {
+            "value": "mynicss" 
+        },
+        "vmname": {
+            "value": "vm-1" 
+        },
+        "username": {
+            "value": "salini" 
+        },
+        "paswd": {
+            "value": "likhitha@123" 
+        }
+    }
+}
